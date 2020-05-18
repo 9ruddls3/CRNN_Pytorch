@@ -20,4 +20,6 @@ RNN_dropout=0
 use_VGG_extractor=False
 learning_rate=(4e-3)*(0.8**0)
 num_train = 2000
-print('Ah--hah!')
+
+if __name__ == "__main__":
+    print('Ah--hah!')
