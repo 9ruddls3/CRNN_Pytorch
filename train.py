@@ -1,6 +1,22 @@
-my_model=Model(use_VGG_extractor=use_VGG_extractor).type(dtype)
+import argparse
+import time
+
+from model import Model
+from torch.nn import CTCLoss
+from torch.autograd import Variable
+
+import torch.optim as optim
+import torch.optim.lr_scheduler as lrs
+import torch
+
+
+
+# use_VGG_extractor, dtype, loader_train, batch_size
+
+my_model= Model(use_VGG_extractor=use_VGG_extractor).type(dtype)
 
 loss_function = CTCLoss().type(dtype)
+
 
 if use_VGG_extractor:
     opt_parameters=list(my_model.RNN.parameters())+list(my_model.toTraget.parameters())
@@ -9,6 +25,7 @@ else:
     optimizer = optim.Adam(my_model.parameters(), lr=learning_rate)
 
 scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
+
 
 
 def model_train(max_epoch, print_every):
