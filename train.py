@@ -10,13 +10,11 @@ import torch.optim.lr_scheduler as lrs
 import torch
 
 
-
 # use_VGG_extractor, dtype, loader_train, batch_size
 
 my_model= Model(use_VGG_extractor=use_VGG_extractor).type(dtype)
 
 loss_function = CTCLoss().type(dtype)
-
 
 if use_VGG_extractor:
     opt_parameters=list(my_model.RNN.parameters())+list(my_model.toTraget.parameters())
@@ -25,8 +23,6 @@ else:
     optimizer = optim.Adam(my_model.parameters(), lr=learning_rate)
 
 scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
-
-
 
 def model_train(max_epoch, print_every):
     iter_each_epoch = num_train // batch_size
@@ -44,7 +40,6 @@ def model_train(max_epoch, print_every):
         for images, labels in loader_train:
 
             X_var = Variable(images.type(dtype))
-
             out_size = Variable(torch.IntTensor([sequence_len] * batch_size))
             y_size = Variable(torch.IntTensor([len(l) for l in labels]))
             conc_label = ''.join(labels)
@@ -52,11 +47,9 @@ def model_train(max_epoch, print_every):
             y_var = Variable(torch.IntTensor(y))
 
             my_model.zero_grad()
-
             my_model.RNN.init_hidden(batch_size)
 
             scores = my_model(X_var)
-
             loss = loss_function(scores, y_var, out_size, y_size) / batch_size
             loss.backward()
             optimizer.step()
