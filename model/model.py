@@ -1,3 +1,8 @@
+import torch
+import torch.nn as nn
+
+from torch.autograd import Variable
+
 class CNN_block(nn.Module):
     def __init__(self, in_channel, out_channel):
         super(CNN_block, self).__init__()
