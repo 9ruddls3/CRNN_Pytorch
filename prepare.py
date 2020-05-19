@@ -3,20 +3,13 @@ import argparse
 import shutil
 import sys
 import PIL
+from tqdm import tqdm
 
 import torch
 from torchvision import transforms
 
 from parms import batch_size as b_size
 from parms import shuffle as sfle
-
-
-def dir_(Dir):
-    if Dir.endswith('/'):
-        return Dir
-    else:
-        return Dir + '/'
-
 
 def Preparing(In, Out, file_name, batch_size, shuffle=False):
     AbsDir = os.path.abspath(In)
@@ -38,18 +31,18 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
         num_dataset= len(file_List)
         pass
 
-    for x, y in enumerate(file_List):
-        img_path = In + '/' + str(y)
+    for x in tqdm(list(enumerate(file_List))):
+        img_path = In + '/' + str(x[1])
         img = PIL.Image.open(img_path).convert("RGB")
         transform = transforms.Compose(
             [transforms.Scale((224, 224)), transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.25, 0.25, 0.25))]
         )
         A = transform(img).to(device)
-        train_Data.append((A, y[:-4]))
-        if x == num_dataset - 1:
+        train_Data.append((A, x[1][:-4]))
+        if x[0] == num_dataset - 1:
             break
-
-    return torch.save(torch.utils.data.DataLoader(train_Data, batch_size=batch_size, shuffle=shuffle), Out + file_name)
+    
+    return torch.save(torch.utils.data.DataLoader(train_Data, batch_size=batch_size, shuffle=shuffle), Out + '/' + file_name)
 
 
 if __name__ == '__main__':
@@ -62,9 +55,9 @@ if __name__ == '__main__':
     to_path = os.path.abspath(dir_(args.Out_dir))
 
     while True:
-        print("Enter Dataloader file name")
+        print("Enter Dataloader file name (.pth)")
         f_name = str(input())
-        dir = from_path + f_name
+        dir = from_path +'/' + f_name
         if os.path.isfile(dir):
             print("Please Enter other name (it existed already)", end='\n')
         else:
