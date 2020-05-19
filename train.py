@@ -10,19 +10,18 @@ import torch
 import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
 
-
 from model.CRNN import CRNN_model
 
-def model_train(dataloader, max_epoch, print_every, b_size=batch_size):
+def model_train(train_model,dataloader, max_epoch, print_every, b_size=batch_size):
     iter_each_epoch = len(dataloader.dataset) // b_size
     loss_his_train = []
 
     for epoch in range(max_epoch):
         scheduler.step()
-        my_model.train()
+        train_model.train()
         print(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())),
               'start epoch %d/%d:' % (epoch + 1, max_epoch), 'learning_rate =', scheduler.get_lr()[0],
-              'sequence_len =', my_model.RNN.sql)
+              'sequence_len =', train_model.RNN.sql)
         tot_loss = 0
 
         it = 0
@@ -34,11 +33,11 @@ def model_train(dataloader, max_epoch, print_every, b_size=batch_size):
             y = [chrToindex[c] for c in conc_label]
             y_var = Variable(torch.IntTensor(y))
 
-            my_model.zero_grad()
-            my_model.RNN.init_hidden(b_size)
+            train_model.zero_grad()
+            train_model.RNN.init_hidden(b_size)
 
-            scores = my_model(X_var)
-            loss = loss_function(scores, y_var, out_size, y_size) / batch_size
+            scores = train_model(X_var)
+            loss = loss_function(scores, y_var, out_size, y_size) / b_size
             loss.backward()
             optimizer.step()
 
@@ -62,13 +61,13 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     Dataloader_path = os.path.abspath(args.Dataloader)
-    Model_path = os.path.abspath(args.Out_dir)
+    Model_path = os.path.abspath(args.Model_path)
     
     dtype =  torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
     
     dataLoader = torch.load(Dataloader_path).type(dtype)
     
-    my_model= Model(use_VGG_extractor=use_VGG_extractor).type(dtype)
+    model= CRNN_model(use_VGG_extractor=use_VGG_extractor).type(dtype)
     
     loss_function = CTCLoss().type(dtype)
 
@@ -80,8 +79,10 @@ if __name__ == "__main__":
 
     scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
     
-    my_model.apply(reset)
-    my_model.train()
-    my_model.RNN.init_hidden(batch_size)
-    loss_his_train=model_train(max_epoch=500, dataloader= dataLoader ,print_every=25)
+    model.apply(reset)
+    model.train()
+    model.RNN.init_hidden(batch_size)
+    loss_his_train= model_train(model, dataloader=dataLoader, max_epoch=500, print_every=25)
+    torch.save(model.state_dict(), Model_path+'/pytorch_CRNN_model.pth') 
+
     
