@@ -2,14 +2,14 @@ import argparse
 import time
 
 from parms import batch_size, use_VGG_extractor, sequence_len, chrToindex
-from parms import dtype as Dtype
 
 from torch.nn import CTCLoss
 from torch.autograd import Variable
 
+import torch
 import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
-import torch
+
 
 from model.CRNN import CRNN_model
 
