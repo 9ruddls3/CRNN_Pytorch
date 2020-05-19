@@ -51,8 +51,8 @@ if __name__ == '__main__':
     parser.add_argument('--Out_dir', type=str, required=True, help='Torch_Dataloader output path')
 
     args = parser.parse_args()
-    from_path = os.path.abspath(dir_(args.In_dir))
-    to_path = os.path.abspath(dir_(args.Out_dir))
+    from_path = os.path.abspath(args.In_dir)
+    to_path = os.path.abspath(args.Out_dir)
 
     while True:
         print("Enter Dataloader file name (.pth)")
