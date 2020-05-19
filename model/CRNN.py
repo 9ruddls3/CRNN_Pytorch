@@ -66,7 +66,7 @@ class BiDireRNN(nn.Module):
         return rnn_out
 
 
-class Model(nn.Module):
+class CRNN(nn.Module):
     def __init__(self, use_VGG_extractor=False):
         super(Model, self).__init__()
         if use_VGG_extractor:
