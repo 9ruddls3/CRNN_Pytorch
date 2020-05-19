@@ -8,6 +8,7 @@ from torch.nn import CTCLoss
 from torch.autograd import Variable
 
 import torch
+import torch.nn as nn
 import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
 
