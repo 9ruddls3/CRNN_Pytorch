@@ -56,11 +56,16 @@ if __name__ == '__main__':
     to_path = os.path.abspath(args.Out_dir)
 
     while True:
+        cnt=0
         print("Enter Dataloader file name (.pth)")
         f_name = str(input())
         dir = to_path +'/' + f_name+str('.pth')
         if os.path.isfile(dir):
             print("Please Enter other name (it existed already)", end='\n')
+            cnt +=1
+            if cnt ==3:
+                print("You Entered existing Directory 3-times. Please Try Agian")
+                sys.exit()
         else:
             Preparing(from_path, to_path, f_name, b_size, sfle)
             print('')
