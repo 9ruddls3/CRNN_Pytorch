@@ -1,7 +1,6 @@
 import argparse
 import time
 
-from model import Model
 
 from parms import batch_size, use_VGG_extractor, dtype, sequence_len, chrToindex, conc_label
 
@@ -12,6 +11,7 @@ import torch.optim as optim
 import torch.optim.lr_scheduler as lrs
 import torch
 
+from model.CRNN import CRNN_model
 
 def model_train(dataloader, max_epoch, print_every, b_size=batch_size):
     iter_each_epoch = len(dataloader.dataset) // b_size
