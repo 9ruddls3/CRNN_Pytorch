@@ -12,7 +12,7 @@ import parms.shuffle as sfle
 
 
 def dir_(Dir):
-    if Dir.endswith('/')
+    if Dir.endswith('/'):
         return Dir
     else:
         return Dir+'/'
