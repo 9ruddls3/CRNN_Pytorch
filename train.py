@@ -2,6 +2,13 @@ import argparse
 import time
 
 from model import Model
+from parms import batch_size as b_size
+from parms import shuffle as sfle
+from parms import use_VGG_extractor as use_VGG_extractor
+from parms import dtype as dtype
+from parms batch_size import as b_size
+
+
 from torch.nn import CTCLoss
 from torch.autograd import Variable
 
@@ -10,21 +17,7 @@ import torch.optim.lr_scheduler as lrs
 import torch
 
 
-# use_VGG_extractor, dtype, loader_train, batch_size
-
-my_model= Model(use_VGG_extractor=use_VGG_extractor).type(dtype)
-
-loss_function = CTCLoss().type(dtype)
-
-if use_VGG_extractor:
-    opt_parameters=list(my_model.RNN.parameters())+list(my_model.toTraget.parameters())
-    optimizer = optim.Adam(iter(opt_parameters), lr=learning_rate)
-else:
-    optimizer = optim.Adam(my_model.parameters(), lr=learning_rate)
-
-scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
-
-def model_train(max_epoch, print_every):
+def model_train(dataloader, max_epoch, print_every):
     iter_each_epoch = num_train // batch_size
     loss_his_train = []
 
@@ -37,8 +30,7 @@ def model_train(max_epoch, print_every):
         tot_loss = 0
 
         it = 0
-        for images, labels in loader_train:
-
+        for images, labels in dataloader:
             X_var = Variable(images.type(dtype))
             out_size = Variable(torch.IntTensor([sequence_len] * batch_size))
             y_size = Variable(torch.IntTensor([len(l) for l in labels]))
@@ -68,7 +60,30 @@ def model_train(max_epoch, print_every):
     return loss_his_train
 
 if __name__ == "__main__":
-  my_model.apply(reset)
-  my_model.train()
-  my_model.RNN.init_hidden(batch_size)
-  loss_his_train=model_train(max_epoch=500,print_every=25)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--Dataloader', type=str, required=True, help='path to folder which contains the images')
+    parser.add_argument('--Model_path', type=str, required=True, help='Torch_Dataloader output path')
+
+    args = parser.parse_args()
+    Dataloader_path = os.path.abspath(args.Dataloader)
+    Model_path = os.path.abspath(args.Out_dir)
+    
+    dataLoader = torch.load(Dataloader_path).type(dtype)
+    
+    my_model= Model(use_VGG_extractor=use_VGG_extractor).type(dtype)
+    
+    loss_function = CTCLoss().type(dtype)
+
+    if use_VGG_extractor:
+        opt_parameters=list(my_model.RNN.parameters())+list(my_model.toTraget.parameters())
+        optimizer = optim.Adam(iter(opt_parameters), lr=learning_rate)
+    else:
+        optimizer = optim.Adam(my_model.parameters(), lr=learning_rate)
+
+    scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
+    
+    my_model.apply(reset)
+    my_model.train()
+    my_model.RNN.init_hidden(batch_size)
+    loss_his_train=model_train(max_epoch=500,dataloader=dataLoader ,print_every=25)
+    
