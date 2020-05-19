@@ -30,7 +30,8 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
     else:
         num_dataset= len(file_List)
         pass
-
+    file_list = file_list[:num_dataset]
+    
     for x in tqdm(list(enumerate(file_List))):
         img_path = In + '/' + str(x[1])
         img = PIL.Image.open(img_path).convert("RGB")
@@ -39,8 +40,7 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
         )
         A = transform(img).to(device)
         train_Data.append((A, x[1][:-4]))
-        if x[0] == num_dataset - 1:
-            break
+
     
     return torch.save(torch.utils.data.DataLoader(train_Data, batch_size=batch_size, shuffle=shuffle), Out + '/' + file_name)
 
