@@ -41,7 +41,7 @@ if __name__ == '__main__':
 #     parser.add_argument('--file', type = str, help = 'path to file which contains the image path and label')
     args = parser.parse_args()
     
-    workDIr = os.path.abspath(Path)
+    workDIr = os.path.abspath(args.folder)
     name_List = []
     file_List = []
     for dirpath, dirnames, filenames in os.walk(workDIr):
