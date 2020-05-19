@@ -13,7 +13,7 @@ import torch.optim.lr_scheduler as lrs
 import torch
 
 
-def model_train(dataloader, max_epoch, print_every, b_size=batch_size, num_train= ):
+def model_train(dataloader, max_epoch, print_every, b_size=batch_size):
     iter_each_epoch = len(dataloader.dataset) // b_size
     loss_his_train = []
 
