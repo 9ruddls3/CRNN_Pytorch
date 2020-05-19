@@ -71,7 +71,7 @@ class BiDireRNN(nn.Module):
 
 class CRNN_model(nn.Module):
     def __init__(self, use_VGG_extractor=False):
-        super(Model, self).__init__()
+        super(CRNN_model, self).__init__()
         if use_VGG_extractor:
             self.feature_extractor = nn.Sequential(*([vgg16.features[i] for i in range(17)]))
             for param in self.feature_extractor.parameters():
