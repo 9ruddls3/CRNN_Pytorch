@@ -6,8 +6,7 @@ for c in vocab:
     chrToindex[c]=cnt
     indexTochr[cnt]=c
     cnt+=1
-
-vocab=['-','.'," ",' ',"'",'!',',']+[chr(ord('a')+i) for i in range(26)]+[chr(ord('A')+i) for i in range(26)]+[chr(ord('0')+i) for i in range(10)]
+    
 vocab_size=cnt # uppercase and lowercase English characters and digits(26+26+10=62)
 
 batch_size=16
