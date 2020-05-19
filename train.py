@@ -1,8 +1,8 @@
 import argparse
 import time
 
-
-from parms import batch_size, use_VGG_extractor, dtype, sequence_len, chrToindex, conc_label
+from parms import batch_size, use_VGG_extractor, sequence_len, chrToindex, conc_label
+from parms import dtype as Dtype
 
 from torch.nn import CTCLoss
 from torch.autograd import Variable
