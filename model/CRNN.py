@@ -37,7 +37,7 @@ class ToRNN(nn.Module):
 class BiDireRNN(nn.Module):
     def __init__(self):
         super(BiDireRNN, self).__init__()
-        self.hidden_dim = global RNN_hidden_dim
+        self.hidden_dim = RNN_hidden_dim
         self.num_layers = RNN_layer
         self.sql = sequence_len
         self.bsize = batch_size
