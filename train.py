@@ -2,7 +2,7 @@ import os
 import argparse
 import time
 
-from parms import batch_size, use_VGG_extractor, sequence_len, chrToindex
+from parms import batch_size, use_VGG_extractor, sequence_len, chrToindex, learning_rate
 
 from torch.nn import CTCLoss
 from torch.autograd import Variable
