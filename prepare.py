@@ -40,7 +40,7 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
     
 
     for x, y in enumerate(file_List):
-        img_path = Path + str(y)
+        img_path = In + str(y)
         img = PIL.Image.open(img_path).convert("RGB")
         transform = transforms.Compose(
             [transforms.Scale((224, 224)), transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.25, 0.25, 0.25))]
