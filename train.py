@@ -58,7 +58,7 @@ def model_train(dataloader, max_epoch, print_every, b_size=batch_size):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--Dataloader', type=str, required=True, help='path to folder which contains the images')
-    parser.add_argument('--Model_path', type=str, required=True, help='Torch_Dataloader output path')
+    parser.add_argument('--Model_path', type=str, required=True, help='path to save trained Model weight file')
 
     args = parser.parse_args()
     Dataloader_path = os.path.abspath(args.Dataloader)
