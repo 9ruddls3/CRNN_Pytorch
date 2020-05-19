@@ -6,9 +6,9 @@ import sys
 import torch
 from torchvision import transforms
 
-import parms.batch_size as b_size
-import parms.num_data as n_data
-import parms.shuffle as sfle
+from parms import batch_size as b_size
+from parms import num_data as n_data
+from parms import shuffle as sfle
 
 
 def dir_(Dir):
@@ -68,3 +68,4 @@ if __name__ == '__main__':
             Preparing(dir, f_name, n_data, b_size, sfle)
             print('DataLoader Creation Complete!')
             sys.exit()
+
