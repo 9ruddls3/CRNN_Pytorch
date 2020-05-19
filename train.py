@@ -59,10 +59,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--Dataloader', type=str, required=True, help='path to folder which contains the images')
     parser.add_argument('--Model_path', type=str, required=True, help='path to save trained Model weight file')
-
+    
     args = parser.parse_args()
     Dataloader_path = os.path.abspath(args.Dataloader)
     Model_path = os.path.abspath(args.Out_dir)
+    
+    dtype =  torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
     
     dataLoader = torch.load(Dataloader_path).type(dtype)
     
