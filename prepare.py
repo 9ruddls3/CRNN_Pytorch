@@ -69,7 +69,7 @@ if __name__ == '__main__':
         if os.path.isfile(dir):
             print("Please Enter other name (it existed already)", end='\n')
         else:
-            Preparing(from_path. to_path, f_name, b_size, sfle)
+            Preparing(from_path, to_path, f_name, b_size, sfle)
             print('DataLoader Creation Complete!')
             sys.exit()
 
