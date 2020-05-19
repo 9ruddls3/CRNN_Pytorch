@@ -2,12 +2,8 @@ import argparse
 import time
 
 from model import Model
-from parms import batch_size as b_size
-from parms import shuffle as sfle
-from parms import use_VGG_extractor as use_VGG_extractor
-from parms import dtype as dtype
-from parms batch_size import as b_size
 
+from parms import batch_size, use_VGG_extractor, dtype,sequence_len, chrToindex, conc_label
 
 from torch.nn import CTCLoss
 from torch.autograd import Variable
@@ -17,8 +13,8 @@ import torch.optim.lr_scheduler as lrs
 import torch
 
 
-def model_train(dataloader, max_epoch, print_every):
-    iter_each_epoch = num_train // batch_size
+def model_train(dataloader, max_epoch, print_every, b_size=batch_size, num_train= ):
+    iter_each_epoch = len(dataloader.dataset) // b_size
     loss_his_train = []
 
     for epoch in range(max_epoch):
@@ -39,7 +35,7 @@ def model_train(dataloader, max_epoch, print_every):
             y_var = Variable(torch.IntTensor(y))
 
             my_model.zero_grad()
-            my_model.RNN.init_hidden(batch_size)
+            my_model.RNN.init_hidden(b_size)
 
             scores = my_model(X_var)
             loss = loss_function(scores, y_var, out_size, y_size) / batch_size
@@ -85,5 +81,5 @@ if __name__ == "__main__":
     my_model.apply(reset)
     my_model.train()
     my_model.RNN.init_hidden(batch_size)
-    loss_his_train=model_train(max_epoch=500,dataloader=dataLoader ,print_every=25)
+    loss_his_train=model_train(max_epoch=500, dataloader= dataLoader ,print_every=25)
     
