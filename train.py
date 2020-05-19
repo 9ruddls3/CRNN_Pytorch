@@ -72,10 +72,10 @@ if __name__ == "__main__":
     loss_function = CTCLoss().type(dtype)
 
     if use_VGG_extractor:
-        opt_parameters=list(my_model.RNN.parameters())+list(my_model.toTraget.parameters())
+        opt_parameters=list(model.RNN.parameters())+list(model.toTraget.parameters())
         optimizer = optim.Adam(iter(opt_parameters), lr=learning_rate)
     else:
-        optimizer = optim.Adam(my_model.parameters(), lr=learning_rate)
+        optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
     
@@ -83,6 +83,5 @@ if __name__ == "__main__":
     model.train()
     model.RNN.init_hidden(batch_size)
     loss_his_train= model_train(model, dataloader=dataLoader, max_epoch=500, print_every=25)
-    torch.save(model.state_dict(), Model_path+'/pytorch_CRNN_model.pth') 
-
-    
+    torch.save(model.state_dict(), Model_path+'/pytorch_CRNN_model.pth')
+    sys.exit()
