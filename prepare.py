@@ -26,10 +26,12 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
     
     if len(file_List)//batch_size !=0:
         num_dataset= (len(file_List)//batch_size)*batch_size
+        pass
     else:
         num_dataset= len(file_List)
+        pass
     
-    file_list = file_list[:num_dataset]
+    file_List = file_List[:num_dataset]
     
     for x in tqdm(list(enumerate(file_List))):
         img_path = In + '/' + str(x[1])
