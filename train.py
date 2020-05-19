@@ -66,7 +66,7 @@ if __name__ == "__main__":
     
     dtype =  torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
     
-    dataLoader = torch.load(Dataloader_path).type(dtype)
+    dataLoader = torch.load(Dataloader_path)
     
     model= CRNN_model(use_VGG_extractor=use_VGG_extractor).type(dtype)
     
