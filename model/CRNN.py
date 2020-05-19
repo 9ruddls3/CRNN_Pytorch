@@ -5,6 +5,7 @@ from torch.autograd import Variable
 
 from parms import RNN_input_dim,RNN_hidden_dim,RNN_layer,sequence_len,batch_size,RNN_dropout,RNN_type,batch_size
 
+dtype =  torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 
 class CNN_block(nn.Module):
     def __init__(self, in_channel, out_channel):
