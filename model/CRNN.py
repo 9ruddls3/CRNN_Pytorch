@@ -3,6 +3,9 @@ import torch.nn as nn
 
 from torch.autograd import Variable
 
+from parms import RNN_hidden_dim,RNN_layer,sequence_len,batch_size,RNN_dropout,RNN_type,batch_size
+
+
 class CNN_block(nn.Module):
     def __init__(self, in_channel, out_channel):
         super(CNN_block, self).__init__()
