@@ -3,7 +3,7 @@ import time
 
 from model import Model
 
-from parms import batch_size, use_VGG_extractor, dtype,sequence_len, chrToindex, conc_label
+from parms import batch_size, use_VGG_extractor, dtype, sequence_len, chrToindex, conc_label
 
 from torch.nn import CTCLoss
 from torch.autograd import Variable
