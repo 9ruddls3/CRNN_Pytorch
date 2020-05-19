@@ -3,7 +3,7 @@ import torch.nn as nn
 
 from torch.autograd import Variable
 
-from parms import RNN_input_dim,RNN_hidden_dim,RNN_layer,sequence_len,batch_size,RNN_dropout,RNN_type,batch_size
+from parms import vocab_size,RNN_input_dim,RNN_hidden_dim,RNN_layer,sequence_len,batch_size,RNN_dropout,RNN_type,batch_size
 
 dtype =  torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 
