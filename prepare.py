@@ -39,14 +39,14 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
         pass
     
 
-    for x, y in enumerate(list(zip(file_List, name_List))):
-        img_path = Path + str(y[0])
+    for x, y in enumerate(file_List):
+        img_path = Path + str(y)
         img = PIL.Image.open(img_path).convert("RGB")
         transform = transforms.Compose(
             [transforms.Scale((224, 224)), transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.25, 0.25, 0.25))]
         )
         A = transform(img).to(device)
-        train_Data.append((A, y[1]))
+        train_Data.append((A, y[:-4]))
         if x == num_dataset - 1:
             break
 
