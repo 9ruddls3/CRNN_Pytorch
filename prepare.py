@@ -7,7 +7,6 @@ import torch
 from torchvision import transforms
 
 from parms import batch_size as b_size
-from parms import num_data as n_data
 from parms import shuffle as sfle
 
 
@@ -18,7 +17,7 @@ def dir_(Dir):
         return Dir + '/'
 
 
-def Preparing(In, Out, file_name, num_train, batch_size, shuffle=False):
+def Preparing(In, Out, file_name, batch_size, shuffle=False):
     AbsDir = os.path.abspath(In)
     file_List = []
 
@@ -70,7 +69,7 @@ if __name__ == '__main__':
         if os.path.isfile(dir):
             print("Please Enter other name (it existed already)", end='\n')
         else:
-            Preparing(from_path. to_path, f_name, n_data, b_size, sfle)
+            Preparing(from_path. to_path, f_name, b_size, sfle)
             print('DataLoader Creation Complete!')
             sys.exit()
 
