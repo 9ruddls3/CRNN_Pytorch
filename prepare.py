@@ -57,11 +57,12 @@ if __name__ == '__main__':
     while True:
         print("Enter Dataloader file name (.pth)")
         f_name = str(input())
-        dir = from_path +'/' + f_name
+        dir = from_path +'/' + f_name+str(.pth)
         if os.path.isfile(dir):
             print("Please Enter other name (it existed already)", end='\n')
         else:
             Preparing(from_path, to_path, f_name, b_size, sfle)
+            print('')
             print('DataLoader Creation Complete!')
             sys.exit()
 
