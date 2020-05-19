@@ -13,6 +13,21 @@ import torch.optim.lr_scheduler as lrs
 
 from model.CRNN import CRNN_model
 
+def reset(model):
+    for m in model.modules():
+        if isinstance(m, nn.Conv2d):
+
+            if m.bias is not None:
+                m.bias.data.zero_()
+        elif isinstance(m, nn.BatchNorm2d):
+            m.weight.data.fill_(1)
+            m.bias.data.zero_()
+        elif isinstance(m, nn.Linear):
+            nn.init.xavier_normal(m.weight, gain=1)
+            m.bias.data.zero_()
+        elif hasattr(m, 'reset_parameters'):
+            m.reset_parameters()
+
 def model_train(train_model,dataloader, max_epoch, print_every, b_size=batch_size):
     iter_each_epoch = len(dataloader.dataset) // b_size
     loss_his_train = []
@@ -79,7 +94,7 @@ if __name__ == "__main__":
         optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     scheduler = lrs.StepLR(optimizer, step_size=20, gamma=0.8)
-    
+
     model.apply(reset)
     model.train()
     model.RNN.init_hidden(batch_size)
