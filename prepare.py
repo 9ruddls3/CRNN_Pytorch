@@ -2,6 +2,7 @@ import os
 import argparse
 import shutil
 import sys
+import PIL
 
 import torch
 from torchvision import transforms
