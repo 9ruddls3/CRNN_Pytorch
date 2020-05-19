@@ -31,17 +31,15 @@ def Preparing(In, Out, file_name, batch_size, shuffle=False):
     train_Data = []
     file_name = file_name +'.pth'
     
-
     if len(file_List)//batch_size !=0:
         num_dataset= (len(file_List)//batch_size)*batch_size
         pass
     else:
         num_dataset= len(file_List)
         pass
-    
 
     for x, y in enumerate(file_List):
-        img_path = In + str(y)
+        img_path = In + '/' + str(y)
         img = PIL.Image.open(img_path).convert("RGB")
         transform = transforms.Compose(
             [transforms.Scale((224, 224)), transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.25, 0.25, 0.25))]
@@ -66,7 +64,7 @@ if __name__ == '__main__':
     while True:
         print("Enter Dataloader file name")
         f_name = str(input())
-        dir = from_path + '/' + f_name
+        dir = from_path + f_name
         if os.path.isfile(dir):
             print("Please Enter other name (it existed already)", end='\n')
         else:
