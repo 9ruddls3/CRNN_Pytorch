@@ -22,5 +22,3 @@ learning_rate=(4e-3)*(0.8**0)
 num_train = 2000
 shuffle = False
 
-if __name__ == "__main__":
-    print('Ah--hah!')
