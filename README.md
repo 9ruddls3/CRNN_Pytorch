@@ -1,11 +1,11 @@
 # CRNN_Pytorch
-This package is for my custom Dataset HearthStone img) and based on Google Colaborative.   
-If you use this for your custom dataset, you can convert your image folder to torchvision.Dataloader by using prepare.py
-
 
 이 CRNN 패키지는 제 데이터셋을 기반으로 진행하였고, 구글 코랩을 기반으로 진행하였습니다.   
 전반적인 Hyper-Parameter는 prams.py 에서 선언되었으며, 이를 수정함으로써 튜닝하는것도 방법입니다.   
 문자열 이미지데이터가 있고, 파일명을 label.확장자로 되어있다면, prepare.py 를 통해 Datalodar 로 변환 시킬 수 있습니다.   
+
+This package is for my custom Dataset and based on Google Colaborative.   
+If you use this for your custom dataset, you can convert your image folder to torchvision.Dataloader by using prepare.py  
 
 * * *
 
