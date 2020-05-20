@@ -62,12 +62,12 @@ The number of saved Dataloader.dataset is (number of image files in folder // ba
    
  ```!python /content/CRNN_Pytorch/train.py --Dataloader (Dataloader Path) --Model_path (path you want save trained model(.pth)) ```   
 
-Dataloader를 로드한 후, 학습을 진행하는 스크립트, 전반적인 Hyper-parameter는 pamrm.py에서 확인 가능   
+Dataloader를 로드한 후, 학습을 진행하는 스크립트, 전반적인 Hyper-parameter는 parms.py에서 확인 가능   
 epoch 수는 500회로 진행하였고, itteration 25회마다 ctcloss를 출력  
 epoch당 소요시간을 확인하여, 학습 종료시간 예측 가능   
 
-This is a script that loads the Dataloader and learns it. The overall Hyper-parameter can be found in pamrm.py.   
-The number of epochs was 500, and the ctcloss rate was shown every 25 itterations.   
+This is a script that loads the Dataloader and learns it. The overall Hyper-parameter can be found in parms.py.   
+The number of epochs was 500, and the ctcloss was shown every 25 itterations.   
 You can predict the end time of learning by checking the time required per epoch.   
 
 
