@@ -11,19 +11,39 @@ If you use this for your custom dataset, you can convert your image folder to to
 
 ## How to Use   
 
+### Requirement   
+1. python   
+2. torch, pytorch   
+3. PIL   
+4. tqdm    
+   
+    
 ### 0. GIt clone 
-(Add git directory / 디렉토리에 이 패키지를 추가)   
+Add git directory /   
+디렉토리에 이 패키지를 추가합니다.   
  ```  !git clone https://github.com/9ruddls3/CRNN_Pytorch.git ```
 
 ### 1. DataPreparing 
-()   
 
- ``` !python /CRNN_Pytorch/prepare.py --In_dir '/content/drive/My Drive/Datasets/HS_Crop/Hearth' --Out_dir '/content/drive/My Drive/' ```
+ ``` !python /CRNN_Pytorch/prepare.py --In_dir (path Image Folder) --Out_dir (path you want save Dataloader(.pth)) ```   
 
+인식할 문자열 이미지 데이터셋이 포함된 폴더를 로드하여, 데이터 로더로 변환합니다.   
+Load the string image data to be recognized and convert it into a Dataloader   
+
+In_dir는 이미지 파일들이 label1.jpg, label2.png, label3.jpg 으로 저당되어있는 폴더의 디렉토리 위치로 하며   
+(이미지 외 다른파일 변환 시 transoform 과정에서 에러), Out_dir는 Torchvision.Dataloader를 .pth 바이너리 파일로 저장됩니다.   
+In_dir is the directory location of the folder where image files are saved as label1.jpg, label2.png, label3.jpg.
+(Error in transoform process when converting files other than images), Out_dir saves Torchvision.Dataloader as a .pth binary file.
+
+
+저장되는 Dataloader.dataset의 갯수는 (폴더 내 이미지 파일 갯수 // batch size(16)) x batch size 가 되도록 하였습니다.   
+(batch size로 나눈 나머지가 있으면, 학습시 input error가 발생 할 수 있기 때문)   
+The number of saved Dataloader.dataset is (number of image files in folder // batch size (16)) x batch size.
+(If there is a remainder divided by batch size, input error may occur during learning)
 
 ### 2. Load DataLoader, train, save trained Pytorch model(.pth)   
-()   
- ```!python /content/CRNN_Pytorch/train.py --Dataloader '/content/drive/My Drive/Datasets/dataloader.pth' --Model_path '/content/drive/My Drive' ```
+   
+ ```!python /content/CRNN_Pytorch/train.py --Dataloader (Dataloader Path) --Model_path (path you want save trained model(.pth)) ```   
 
 
 
@@ -44,4 +64,9 @@ If you use this for your custom dataset, you can convert your image folder to to
 2020-05-20 02:30:40 iter 100 loss = 0.000371   
 2020-05-20 02:30:48 iter 125 loss = 0.000345   
 2020-05-20 02:30:48 epoch 500/500 average_loss = 0.000230
+
+ACKNOWLEGEMEMT
+An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition :    https://arxiv.org/abs/1507.05717
+
+CRNN 논문 소개 및 구현 : https://www.theteams.kr/teams/536/post/70322   
 
