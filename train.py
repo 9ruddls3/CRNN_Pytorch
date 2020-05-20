@@ -1,6 +1,7 @@
 import os
 import argparse
 import time
+import sys
 
 from parms import batch_size, use_VGG_extractor, sequence_len, chrToindex, learning_rate
 
