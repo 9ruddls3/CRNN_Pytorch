@@ -126,5 +126,3 @@ After collecting new images again, verifying the performance of the learning mod
 An End-to-End Trainable Neural Network for Image-based Sequence Recognition and Its Application to Scene Text Recognition :    https://arxiv.org/abs/1507.05717
 
 CRNN 논문 소개 : https://www.theteams.kr/teams/536/post/70322   
-
-CRNN pytorch 구현 깃 : https://github.com/cuppersd/crnn-pytorch
