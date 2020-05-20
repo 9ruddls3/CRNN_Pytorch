@@ -22,6 +22,10 @@ https://medium.com/qandastudy/crnn-%EB%85%BC%EB%AC%B8-%EC%86%8C%EA%B0%9C-%EB%B0%
 ## How to Use   
 
 ### Requirement   
+
+이 패키지에 쓰인 언어 및 라이브러리 버전들은 다음과 같습니다.   
+The language and library versions used in this package are listed below.   
+
 1. python == 3.6.9   
 2. torch == 1.5.0+cu101
 3. torchvision == 0.6.0+cu101   
