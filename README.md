@@ -64,7 +64,7 @@ The number of saved Dataloader.dataset is (number of image files in folder // ba
 
 ### 2. Load DataLoader, train, save trained Pytorch model(.pth)   
    
- ```!python /content/CRNN_Pytorch/train.py --Dataloader (Dataloader Path) --Model_path (path you want save trained model(.pth)) ```   
+ ```!python /CRNN_Pytorch/train.py --Dataloader (Dataloader Path) --Model_path (path you want save trained model(.pth)) ```   
 
 Dataloader를 로드한 후, 학습을 진행하는 스크립트, 전반적인 Hyper-parameter는 parms.py에서 확인 가능   
 epoch 수는 500회로 진행하였고, itteration 25회마다 ctcloss를 출력  
