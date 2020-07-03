@@ -28,7 +28,8 @@ Embedded-Sentence들을 Input data로 적용시켜 LSTM에 학습할 수 있도�
 ### 1. Data Check and Re-structure   
    Pandas 로 데이터 확인 후, Mecab 라이브러리를 git-clone 및 설치   
             
-   데이터들을 카테고리 별 문서로 통합 (ex/ 'starbucks' + '탐앤탐스' => 'starbucks 탐앤탐스')   
+   데이터들을 카테고리 별 문서로 통합   
+   (ex/ 'starbucks' + '탐앤탐스' => 'starbucks 탐앤탐스')   
       
    통한된 문서들을 기준으로 Mecab 라이브러리를 통한 명사/품사 태깅   
    (ex/ 'starbucks 탐앤탐스' => ['star','bucks','탐','앤','탐스']) 
@@ -42,8 +43,8 @@ Embedded-Sentence들을 Input data로 적용시켜 LSTM에 학습할 수 있도�
       
    각 단어를 1x17의 vector로 치환하도록 key:토큰, value: vector로 이루어진 딕셔너리 생성   
       
-   학습데이터셋, 검증데이터 모두 Mecab 토큰화 함수의 결과값을 위에서 생성한 딕셔너리를 통해, nx17 의 Matrix로 치환
-   (만약 Mecab 토큰화 함수에 문자열에서 귀속받는 토큰이 없다면, 해당 데이터는 [0]x17인 벡터로 리턴)   
+   학습데이터셋, 검증데이터 모두 Mecab 토큰화 함수의 결과값을 위에서 생성한 딕셔너리를 통해, 17  /*  의 Matrix로 치환   
+   (만약 Mecab 토큰화 함수에 문자열에서 귀속받는 토큰이 없다면, 해당 데이터는 17 /* [0] 인 벡터로 리턴)   
       
    학습을 위해 가장 긴 데이터의 자릿수를 확인하고, 그에 맞게끔 padding 및 label도 정수형에서 onehot-vector로 Embedding      
       
