@@ -27,8 +27,12 @@ Embedded-Sentence들을 Input data로 적용시켜 LSTM에 학습할 수 있도�
 
 ### 1. Data Check and Re-structure   
    Pandas 로 데이터 확인 후, Mecab 라이브러리를 git-clone 및 설치   
+            
+   데이터들을 카테고리 별 문서로 통합 (ex/ 'starbucks' + '탐앤탐스' => 'starbucks 탐앤탐스')   
+      
+   통한된 문서들을 기준으로 Mecab 라이브러리를 통한 명사/품사 태깅 (ex/ 'starbucks 탐앤탐스' = ['star','bucks','탐','앤','탐스'] ) 
    
-   각 카테고리별
+   
    
 ### 2. TF-Idf Vectorize(Word Embedding) & Data Preparing   
    Sklearn의 
