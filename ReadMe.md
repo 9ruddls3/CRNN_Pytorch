@@ -52,7 +52,7 @@
 |Test|0.6225|82.56%|91.66%|95.49%|0.8216|
 
 
-2. 명사단위 태깅   
+2. 품사 단위 태깅   
 
 |Train/Test|Cross Entropy Loss | Top-1 Accuracy(%)|Top-3 Accuracy(%)|Top-5 Accuracy(%)|F1 Score|
 |------|------|---|---|---|---|
