@@ -40,13 +40,22 @@ Embedded-Sentence들을 Input data로 적용시켜 LSTM에 학습할 수 있도�
 ### 2. TF-Idf Vectorize(Word Embedding) & Data Preparing   
    Sklearn의 TfidfVectorizer 함수틑 통해, 각 토큰과, 문서간의 연관성을 나타내는 Matrix생성   
       
-   를 얻고, 각 단어를 1x17의 vector로 치환하는
-
-
+   각 단어를 1x17의 vector로 치환하도록 key:토큰, value: vector로 이루어진 딕셔너리 생성   
+      
+   학습데이터셋, 검증데이터 모두 Mecab 토큰화 함수의 결과값을 위에서 생성한 딕셔너리를 통해, nx17 의 Matrix로 치환
+   (만약 Mecab 토큰화 함수에 문자열에서 귀속받는 토큰이 없다면, 해당 데이터는 [0]x17인 벡터로 리턴)   
+      
+   학습을 위해 가장 긴 데이터의 자릿수를 확인하고, 그에 맞게끔 padding 및 label도 정수형에서 onehot-vector로 Embedding      
+      
+      
 ### 3. LSTM Training  
-
-
-
+   Hyperparameter: epoch = 500, batch_size = 64, learning_rate= 0.001, Adam알고리즘 적용   
+   Lstm Layer 수 : 1   
+   Full-Connected-Layer Activaion : Softmax   
+   평가 Loss 함수 : Categorical_Crossentropy   
+      
+   위를 기반으로 Keras로 구현하여 학습
+      
 
 
 ## Expriments Result  
