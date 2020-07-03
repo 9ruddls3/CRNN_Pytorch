@@ -43,23 +43,21 @@
 
 ## Expriments Result  
 
-1. 명사단위 태깅   
 
-|Train/Test|Cross Entropy Loss | Top-1 Accuracy|Top-3 Accuracy|Top-5 Accuracy|F1 Score|
+1. 명사 단위 태깅   
+
+|Train/Test|Cross Entropy Loss | Top-1 Accuracy(%)|Top-3 Accuracy(%)|Top-5 Accuracy(%)|F1 Score|
 |------|------|---|---|---|---|
-|Train|테스트1|테스트2|테스트3|설명|설명|
-|Test|테스트1|테스트2|테스트3|설명|설명|
+|Train|0.5275|84.89%|93.05%|96.27%|0.8484|
+|Test|0.6225|82.56%|91.66%|95.49%|0.8216|
 
 
+2. 명사단위 태깅   
 
-2. 품사 단위 태깅   
-
-|Train/Test||Cross Entropy Loss | Top-1 Accuracy|Top-3 Accuracy|Top-5 Accuracy|F1 Score|
-|------||------|---|---|---|---|
-|Train||테스트1|테스트2|테스트3|설명|설명|
-|Test||테스트1|테스트2|테스트3|설명|설명|
-
-
+|Train/Test|Cross Entropy Loss | Top-1 Accuracy(%)|Top-3 Accuracy(%)|Top-5 Accuracy(%)|F1 Score|
+|------|------|---|---|---|---|
+|Train|0.5126|85.41%|93.43%|96.20%|0.8534|
+|Test|0.6071|82.94%|91.93%|95.49%|0.8254|
 
 
 
